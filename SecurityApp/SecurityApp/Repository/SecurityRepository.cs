@@ -1,21 +1,18 @@
-﻿using SecurityApp.Services.Contracts;
+﻿using SecurityApp.Repository.Models;
 
 namespace SecurityApp.Repository;
 
 public class SecurityRepository
 {
-    public SecurityRepository()
-    {
+    private readonly ResourceContext _context;
 
+    public SecurityRepository(ResourceContext context)
+    {
+        _context = context;
     }
 
-    public async Task<ResourceDto> GetResource()
+    public async Task<Resource> GetResource(int id)
     {
-
-    }
-
-    public async Task PostResource()
-    {
-
+        return await _context.FindAsync<Resource>(id);
     }
 }

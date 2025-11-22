@@ -1,20 +1,26 @@
-﻿using SecurityApp.Services.Contracts;
+﻿using SecurityApp.Repository;
+using SecurityApp.Services.Contracts;
 
 namespace SecurityApp.Services;
 
 public class SecurityService
 {
-    public SecurityService()
+    private readonly SecurityRepository _securityRepository;
+
+    public SecurityService(ResourceContext context)
     {
+        _securityRepository = new SecurityRepository(context);
     }
 
-    public async Task<ResourceDto> GetResource()
+    public async Task<ResourceDto> GetResource(int id)
     {
+        var resource = await _securityRepository.GetResource(id);
 
-    }
-
-    public async Task PostResource()
-    {
-
+        return new ResourceDto()
+        {
+            UserId = resource.UserId,
+            ResourceName = resource.ResourceName,
+            TenantId = resource.TenantId
+        };
     }
 }

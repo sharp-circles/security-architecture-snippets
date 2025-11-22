@@ -1,0 +1,9 @@
+# Binaries
+
+**/bin
+**/obj
+
+# VS config
+
+**/.vs
+.editorconfig
