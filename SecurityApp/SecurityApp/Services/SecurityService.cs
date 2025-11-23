@@ -24,7 +24,7 @@ public class SecurityService : ISecurityService
         try
         {
             await _securityValidator.WithRequest(id)
-                        .Validate();
+                                    .Validate();
 
             _logger.LogInformation("Processing get resource with id {Id}", id);
 

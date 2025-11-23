@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SecurityApp.Services.Contracts;
 
 namespace SecurityApp.Controllers;
@@ -15,6 +16,7 @@ public class SecurityController : ControllerBase
     }
 
     [HttpGet("resource/{id}")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
