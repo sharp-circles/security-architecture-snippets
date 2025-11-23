@@ -1,8 +1,9 @@
-﻿using SecurityApp.Repository.Models;
+﻿using SecurityApp.Repository.Entities;
+using SecurityApp.Services.Contracts;
 
 namespace SecurityApp.Repository;
 
-public class SecurityRepository
+public class SecurityRepository : ISecurityRepository
 {
     private readonly ResourceContext _context;
 

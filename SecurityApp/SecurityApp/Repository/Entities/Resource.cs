@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SecurityApp.Repository.Models;
+namespace SecurityApp.Repository.Entities;
 
 [Table("Resource")]
 public class Resource

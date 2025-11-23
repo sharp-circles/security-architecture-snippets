@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using SecurityApp.Repository;
-using SecurityApp.Repository.Models;
+using SecurityApp.Repository.Entities;
+using SecurityApp.Services;
+using SecurityApp.Services.Contracts;
 
 namespace SecurityApp
 {
@@ -11,6 +13,9 @@ namespace SecurityApp
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddDbContext<ResourceContext>(options => options.UseInMemoryDatabase(nameof(Resource)));
+
+            builder.Services.AddScoped<ISecurityService, SecurityService>();
+            builder.Services.AddScoped<ISecurityRepository, SecurityRepository>();
 
             builder.Services.AddControllers();
 

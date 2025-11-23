@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SecurityApp.Repository;
-using SecurityApp.Services;
+using SecurityApp.Services.Contracts;
 
 namespace SecurityApp.Controllers;
 
@@ -8,11 +7,11 @@ namespace SecurityApp.Controllers;
 [Route("api/v1/[controller]")]
 public class SecurityController : ControllerBase
 {
-    private readonly SecurityService _securityService;
+    private readonly ISecurityService _securityService;
 
-    public SecurityController(ResourceContext context)
+    public SecurityController(ISecurityService securityService)
     {
-        _securityService = new SecurityService(context);
+        _securityService = securityService;
     }
 
     [HttpGet("resource/{id}")]

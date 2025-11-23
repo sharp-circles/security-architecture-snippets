@@ -1,15 +1,15 @@
-﻿using SecurityApp.Repository;
-using SecurityApp.Services.Contracts;
+﻿using SecurityApp.Services.Contracts;
+using SecurityApp.Services.Dto;
 
 namespace SecurityApp.Services;
 
-public class SecurityService
+public class SecurityService : ISecurityService
 {
-    private readonly SecurityRepository _securityRepository;
+    private readonly ISecurityRepository _securityRepository;
 
-    public SecurityService(ResourceContext context)
+    public SecurityService(ISecurityRepository securityRepository)
     {
-        _securityRepository = new SecurityRepository(context);
+        _securityRepository = securityRepository;
     }
 
     public async Task<ResourceDto> GetResource(int id)

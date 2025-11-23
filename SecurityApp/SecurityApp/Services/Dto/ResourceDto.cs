@@ -1,4 +1,4 @@
-﻿namespace SecurityApp.Services.Contracts;
+﻿namespace SecurityApp.Services.Dto;
 
 public record ResourceDto
 {

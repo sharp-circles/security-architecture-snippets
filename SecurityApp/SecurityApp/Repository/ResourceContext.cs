@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SecurityApp.Repository.Models;
+using SecurityApp.Repository.Entities;
 
 namespace SecurityApp.Repository;
 
