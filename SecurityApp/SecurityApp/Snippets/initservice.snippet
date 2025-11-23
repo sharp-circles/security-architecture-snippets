@@ -17,23 +17,24 @@
       </Declarations>
       <Code Language="CSharp">
         <![CDATA[using SecurityApp.Services.Contracts;
+using SecurityApp.Services.Entities;
 
-		namespace SecurityApp.Services;
+namespace SecurityApp.Services;
 
-		public class SecurityService : ISecurityService
-		{
-			private readonly ISecurityRepository _securityRepository;
+public class SecurityService : ISecurityService
+{
+    private readonly ISecurityRepository<Resource> _securityRepository;
 
-			public SecurityService(ISecurityRepository securityRepository)
-			{
-				_securityRepository = securityRepository;
-			}
+    public SecurityService(ISecurityRepository<Resource> securityRepository)
+    {
+        _securityRepository = securityRepository;
+    }
 
-			public async Task Get(int id)
-			{
-
-			}
-		}
+    public async Task GetResource(int id)
+    {
+	
+    }
+}
         ]]>
       </Code>
     </Snippet>
