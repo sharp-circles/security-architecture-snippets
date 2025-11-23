@@ -1,8 +1,6 @@
-﻿using SecurityApp.Services.Entities;
+﻿namespace SecurityApp.Services.Contracts;
 
-namespace SecurityApp.Services.Contracts;
-
-public interface ISecurityRepository
+public interface ISecurityRepository<T>
 {
-    Task<Resource> GetResource(int id);
+    Task<T> GetResource(int id);
 }

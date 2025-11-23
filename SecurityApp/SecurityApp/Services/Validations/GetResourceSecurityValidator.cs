@@ -1,4 +1,5 @@
 ﻿using SecurityApp.Services.Contracts;
+using SecurityApp.Services.Entities;
 using SecurityApp.Services.ErrorHandling.Exceptions;
 using SecurityApp.Services.Validations.Contracts;
 
@@ -6,10 +7,10 @@ namespace SecurityApp.Services.Validations;
 
 public class GetResourceSecurityValidator : IGetResourceSecurityValidator
 {
-    private readonly ISecurityRepository _securityRepository;
+    private readonly ISecurityRepository<Resource> _securityRepository;
     private int _resourceId;
 
-    public GetResourceSecurityValidator(ISecurityRepository securityRepository)
+    public GetResourceSecurityValidator(ISecurityRepository<Resource> securityRepository)
     {
         _securityRepository = securityRepository;
     }

@@ -1,19 +1,18 @@
 ﻿using SecurityApp.Services.Contracts;
-using SecurityApp.Services.Entities;
 
 namespace SecurityApp.Repository;
 
-public class SecurityRepository : ISecurityRepository
+public class SecurityRepository<T> : ISecurityRepository<T> where T : class
 {
-    private readonly ResourceContext _context;
+    private readonly SecurityContext _context;
 
-    public SecurityRepository(ResourceContext context)
+    public SecurityRepository(SecurityContext context)
     {
         _context = context;
     }
 
-    public async Task<Resource> GetResource(int id)
+    public async Task<T> GetResource(int id)
     {
-        return await _context.FindAsync<Resource>(id);
+        return await _context.FindAsync<T>(id);
     }
 }

@@ -18,10 +18,10 @@ namespace SecurityApp
 
             ReadLoggerConfiguration();
 
-            builder.Services.AddDbContext<ResourceContext>(options => options.UseInMemoryDatabase(nameof(Resource)));
+            builder.Services.AddDbContext<SecurityContext>(options => options.UseInMemoryDatabase(nameof(Resource)));
 
             builder.Services.AddScoped<ISecurityService, SecurityService>();
-            builder.Services.AddScoped<ISecurityRepository, SecurityRepository>();
+            builder.Services.AddScoped<ISecurityRepository<Resource>, SecurityRepository<Resource>>();
             builder.Services.AddScoped<IGetResourceSecurityValidator, GetResourceSecurityValidator>();
 
             builder.Services.AddSerilog();

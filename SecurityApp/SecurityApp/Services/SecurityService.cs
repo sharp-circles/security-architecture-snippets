@@ -1,16 +1,17 @@
 ﻿using SecurityApp.Services.Contracts;
 using SecurityApp.Services.Dto;
+using SecurityApp.Services.Entities;
 using SecurityApp.Services.Validations.Contracts;
 
 namespace SecurityApp.Services;
 
 public class SecurityService : ISecurityService
 {
-    private readonly ISecurityRepository _securityRepository;
+    private readonly ISecurityRepository<Resource> _securityRepository;
     private readonly IGetResourceSecurityValidator _securityValidator;
     private readonly ILogger<SecurityService> _logger;
 
-    public SecurityService(ISecurityRepository securityRepository, IGetResourceSecurityValidator securityValidator, ILogger<SecurityService> logger)
+    public SecurityService(ISecurityRepository<Resource> securityRepository, IGetResourceSecurityValidator securityValidator, ILogger<SecurityService> logger)
     {
         _securityRepository = securityRepository;
         _securityValidator = securityValidator;
