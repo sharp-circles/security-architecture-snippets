@@ -1,6 +1,7 @@
 ﻿using SecurityApp.Services.Contracts;
 using SecurityApp.Services.Dto;
 using SecurityApp.Services.Entities;
+using SecurityApp.Services.ErrorHandling.Exceptions;
 using SecurityApp.Services.Validations.Contracts;
 
 namespace SecurityApp.Services;
@@ -20,18 +21,25 @@ public class SecurityService : ISecurityService
 
     public async Task<ResourceDto> GetResource(int id)
     {
-        await _securityValidator.WithRequest(id)
-                                .Validate();
-
-        _logger.LogInformation("Processing get resource with id {Id}", id);
-
-        var resource = await _securityRepository.GetResource(id);
-
-        return new ResourceDto()
+        try
         {
-            UserId = resource.UserId,
-            ResourceName = resource.ResourceName,
-            TenantId = resource.TenantId
-        };
+            await _securityValidator.WithRequest(id)
+                        .Validate();
+
+            _logger.LogInformation("Processing get resource with id {Id}", id);
+
+            var resource = await _securityRepository.GetResource(id);
+
+            return new ResourceDto()
+            {
+                UserId = resource.UserId,
+                ResourceName = resource.ResourceName,
+                TenantId = resource.TenantId
+            };
+        }
+        catch (Exception)
+        {
+            throw new SecurityAppException("Unexpected error while getting resource");
+        }
     }
 }
