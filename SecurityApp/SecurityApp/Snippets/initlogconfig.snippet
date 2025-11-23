@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Logger configuration</Title>
+      <Author>SecurityEngineer</Author>
+      <Description>Reads logger configuration</Description>
+      <Shortcut>initlogconfig</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>Domain</ID>
+          <ToolTip>Resource</ToolTip>
+          <Default>Resource</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(new ConfigurationBuilder()
+													   .AddJsonFile("appsettings.json")
+													   .AddJsonFile("appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
+													   .AddEnvironmentVariables()
+													   .Build())
+													   .Enrich.FromLogContext()
+													   .CreateLogger();
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
