@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using SecurityApp.ErrorHandling;
 using SecurityApp.Repository;
 using SecurityApp.Services;
 using SecurityApp.Services.Contracts;
 using SecurityApp.Services.Entities;
+using SecurityApp.Services.ErrorHandling;
+using SecurityApp.Services.Validations;
+using SecurityApp.Services.Validations.Contracts;
 using Serilog;
 
 namespace SecurityApp
@@ -20,6 +22,7 @@ namespace SecurityApp
 
             builder.Services.AddScoped<ISecurityService, SecurityService>();
             builder.Services.AddScoped<ISecurityRepository, SecurityRepository>();
+            builder.Services.AddScoped<IGetResourceSecurityValidator, GetResourceSecurityValidator>();
 
             builder.Services.AddSerilog();
 

@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using SecurityApp.Services.ErrorHandling.Exceptions;
 
-namespace SecurityApp.ErrorHandling;
+namespace SecurityApp.Services.ErrorHandling;
 
 public class GlobalExceptionHandler : IExceptionHandler
 {
@@ -17,6 +18,7 @@ public class GlobalExceptionHandler : IExceptionHandler
         var problemDetails = exception switch
         {
             UnauthorizedAccessException => HandleUnauthorizedException(exception),
+            ValidationException => HandleValidationException(exception),
             _ => HandleUnhandledException(exception)
         };
 
@@ -49,6 +51,19 @@ public class GlobalExceptionHandler : IExceptionHandler
         {
             Status = StatusCodes.Status500InternalServerError,
             Title = "Unhandled exception"
+        };
+    }
+
+    private ProblemDetails HandleValidationException(Exception exception)
+    {
+        _logger.LogError("Exception was thrown: {Message}", exception.Message);
+
+        var validationException = (ValidationException)exception;
+
+        return new ProblemDetails()
+        {
+            Status = validationException.Code,
+            Title = validationException.Message
         };
     }
 }
