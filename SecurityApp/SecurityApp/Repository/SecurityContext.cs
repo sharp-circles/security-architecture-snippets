@@ -1,0 +1,24 @@
+﻿using Microsoft.EntityFrameworkCore;
+using SecurityApp.Services.Entities;
+
+namespace SecurityApp.Repository;
+
+public class SecurityContext : DbContext
+{
+    public DbSet<Resource> Resources { get; set; }
+
+    public SecurityContext(DbContextOptions<SecurityContext> options) : base(options)
+    {
+        base.Database.EnsureCreatedAsync();
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseAsyncSeeding(async (context, _, cancellationToken) =>
+        {
+            context.Add(new Resource() { UserId = 1, ResourceName = "Resource", TenantId = 1 });
+
+            await context.SaveChangesAsync(cancellationToken);
+        });
+    }
+}
