@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Security Repository Scaffolding</Title>
+      <Author>SecurityEngineer</Author>
+      <Description>Creates Repository scaffolding</Description>
+      <Shortcut>initrepo</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>Domain</ID>
+          <ToolTip>Resource</ToolTip>
+          <Default>Resource</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[using SecurityApp.Services.Contracts;
+
+		namespace SecurityApp.Repository;
+
+		public class SecurityRepository : ISecurityRepository
+		{
+			private readonly ResourceContext _context;
+
+			public SecurityRepository(ResourceContext context)
+			{
+				_context = context;
+			}
+
+			public async Task Get(int id)
+			{
+				return await _context.FindAsync(id);
+			}
+		}
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

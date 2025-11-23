@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Security Service Scaffolding</Title>
+      <Author>SecurityEngineer</Author>
+      <Description>Creates Service scaffolding</Description>
+      <Shortcut>initservice</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>Domain</ID>
+          <ToolTip>Resource</ToolTip>
+          <Default>Resource</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[using SecurityApp.Services.Contracts;
+
+		namespace SecurityApp.Services;
+
+		public class SecurityService : ISecurityService
+		{
+			private readonly ISecurityRepository _securityRepository;
+
+			public SecurityService(ISecurityRepository securityRepository)
+			{
+				_securityRepository = securityRepository;
+			}
+
+			public async Task Get(int id)
+			{
+
+			}
+		}
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
