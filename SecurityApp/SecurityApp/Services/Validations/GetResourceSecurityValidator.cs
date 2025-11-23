@@ -14,9 +14,9 @@ public class GetResourceSecurityValidator : IGetResourceSecurityValidator
         _securityRepository = securityRepository;
     }
 
-    public ISecurityValidator WithRequest(object request)
+    public ISecurityValidator WithRequest(int request)
     {
-        _resourceId = (int)request;
+        _resourceId = request;
 
         return this;
     }

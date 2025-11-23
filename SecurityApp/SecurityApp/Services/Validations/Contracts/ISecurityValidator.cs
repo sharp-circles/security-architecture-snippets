@@ -2,7 +2,6 @@
 
 public interface ISecurityValidator
 {
-    ISecurityValidator WithRequest(object request);
     Task ValidateInput();
     Task ValidateBusinessResources();
     Task ValidateBusinessRules();

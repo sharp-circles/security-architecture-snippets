@@ -2,5 +2,6 @@
 {
     public interface IGetResourceSecurityValidator : ISecurityValidator
     {
+        ISecurityValidator WithRequest(int request);
     }
 }
