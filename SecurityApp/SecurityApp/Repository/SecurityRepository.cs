@@ -1,5 +1,5 @@
-﻿using SecurityApp.Repository.Entities;
-using SecurityApp.Services.Contracts;
+﻿using SecurityApp.Services.Contracts;
+using SecurityApp.Services.Entities;
 
 namespace SecurityApp.Repository;
 

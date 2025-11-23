@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using SecurityApp.ErrorHandling;
 using SecurityApp.Repository;
-using SecurityApp.Repository.Entities;
 using SecurityApp.Services;
 using SecurityApp.Services.Contracts;
+using SecurityApp.Services.Entities;
 using Serilog;
 
 namespace SecurityApp
@@ -24,9 +25,15 @@ namespace SecurityApp
 
             builder.Services.AddControllers();
 
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
+            builder.Services.AddProblemDetails();
+
             var app = builder.Build();
 
             app.UseSerilogRequestLogging();
+
+            app.UseExceptionHandler();
 
             app.UseHttpsRedirection();
 

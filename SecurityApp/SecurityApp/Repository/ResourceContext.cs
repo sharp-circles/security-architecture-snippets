@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SecurityApp.Repository.Entities;
+using SecurityApp.Services.Entities;
 
 namespace SecurityApp.Repository;
 
@@ -9,7 +9,7 @@ public class ResourceContext : DbContext
 
     public ResourceContext(DbContextOptions<ResourceContext> options) : base(options)
     {
-        base.Database.EnsureCreatedAsync();
+        //base.Database.EnsureCreatedAsync();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -1,4 +1,4 @@
-﻿using SecurityApp.Repository.Entities;
+﻿using SecurityApp.Services.Entities;
 
 namespace SecurityApp.Services.Contracts;
 
